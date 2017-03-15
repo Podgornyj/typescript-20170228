@@ -16,9 +16,10 @@ function summator(...params) {
 }
 //3.1
 function getUnique_one(...a) {
-    let set = new Set();
-    a.forEach((item) => set.add(item));
-    return set;
+    return [...new Set(a)];
+    // let set = new Set();
+    // a.forEach((item)=>set.add(item));
+    // return set;
 }
 //3.2
 function getUnique_two(...a) {
