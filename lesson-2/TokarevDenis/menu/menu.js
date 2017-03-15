@@ -1,4 +1,4 @@
-let menuList = [
+var menuList = [
     {
         title: 'Животные',
         items: [
@@ -17,7 +17,7 @@ let menuList = [
                     { title: 'Змеи' },
                     { title: 'Птицы' },
                     { title: 'Ящерицы' },
-                ],
+                ]
             }
         ]
     },
@@ -40,8 +40,8 @@ let menuList = [
         ]
     }
 ];
-class Menu {
-    constructor(opt) {
+var Menu = (function () {
+    function Menu(opt) {
         this._element = opt.element;
         this._menuList = opt.menuList;
         this._element.innerHTML = this._generateMenu(this._menuList);
@@ -52,43 +52,44 @@ class Menu {
         this.closeButton = document.querySelector('.close');
         this.aimedLi = document.getElementsByTagName('li')[0];
     }
-    getElem() {
+    Menu.prototype.getElem = function () {
         return this._element;
-    }
-    toggle() {
+    };
+    Menu.prototype.toggle = function () {
         this.aimedLi.classList.toggle('menu-open');
-    }
-    open() {
+    };
+    Menu.prototype.open = function () {
         this.aimedLi.classList.add('menu-open');
-    }
-    close() {
+    };
+    Menu.prototype.close = function () {
         this.aimedLi.classList.remove('menu-open');
-    }
-    _clickHandler(ev) {
-        let el = ev.target;
-        let classList = el.classList;
+    };
+    Menu.prototype._clickHandler = function (ev) {
+        var el = ev.target;
+        var classList = el.classList;
         if (!classList.contains('title')) {
             return;
         }
-        let parentLi = el.parentNode;
+        var parentLi = el.parentNode;
         parentLi.classList.toggle('menu-open');
-    }
-    _generateMenu(menuList) {
-        let content = `<ul>`;
-        for (let a of menuList) {
-            content += `<li><a ${a.items ? 'class=title' : ''}
-      ${a.link ? 'href=' + a.link : ''}>${a.title}</a>`;
+    };
+    Menu.prototype._generateMenu = function (menuList) {
+        var content = "<ul>";
+        for (var _i = 0, menuList_1 = menuList; _i < menuList_1.length; _i++) {
+            var a = menuList_1[_i];
+            content += "<li><a " + (a.items ? 'class=title' : '') + "\n      " + (a.link ? 'href=' + a.link : '') + ">" + a.title + "</a>";
             if (!a.items) {
-                content += `</li>`;
+                content += "</li>";
                 continue;
             }
-            content += `${this._generateMenu(a.items)}</li>`;
+            content += this._generateMenu(a.items) + "</li>";
         }
-        return `${content}</ul>`;
-    }
-}
-let element = document.querySelector('.menu');
-let nav = new Menu({ element, menuList });
+        return content + "</ul>";
+    };
+    return Menu;
+}());
+var element = document.querySelector('.menu');
+var nav = new Menu({ element: element, menuList: menuList });
 function getElement() {
     return nav.getElem();
 }

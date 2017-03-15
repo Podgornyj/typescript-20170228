@@ -47,6 +47,17 @@ var Menu = (function () {
         this._element.innerHTML = this._generateMenu(this._menuList);
         this._element.addEventListener('click', this._clickHandler);
     }
+    Menu.prototype.getElem = function () {
+        return this._element;
+    };
+    Menu.prototype.toggle = function (el) {
+        var li = document.querySelector(el);
+        li.classList.toggle('menu-open');
+    };
+    Menu.prototype.close = function (el) {
+        var li = document.querySelector(el);
+        li.classList.remove('menu-open');
+    };
     Menu.prototype._clickHandler = function (ev) {
         var el = ev.target;
         var classList = el.classList;
@@ -68,17 +79,6 @@ var Menu = (function () {
             content += this._generateMenu(a.items) + "</li>";
         }
         return content + "</ul>";
-    };
-    Menu.prototype.getElem = function () {
-        return this._element;
-    };
-    Menu.prototype.toggle = function (el) {
-        var li = document.querySelector(el);
-        li.classList.toggle('menu-open');
-    };
-    Menu.prototype.close = function (el) {
-        var li = document.querySelector(el);
-        li.classList.remove('menu-open');
     };
     Menu.prototype.open = function (el) {
         var li = document.querySelector(el);

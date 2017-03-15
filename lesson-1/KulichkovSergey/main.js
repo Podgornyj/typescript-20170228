@@ -14,7 +14,7 @@ var menuList = [
                     { title: 'Змеи' },
                     { title: 'Птицы' },
                     { title: 'Ящерицы' },
-                ]
+                ],
             },
         ]
     },
@@ -48,6 +48,7 @@ function generateMenu(list) {
     content += "</ul>";
     return content;
 }
+;
 var navMenuList = document.querySelector('.menu');
 navMenuList.innerHTML = generateMenu(menuList);
 navMenuList.onclick = function (ev) {
