@@ -3,6 +3,7 @@
     "module": "commonjs",
     "lib": [
       "es6",
+      "es7",
       "dom",
       "es2016.array.include"
     ],
